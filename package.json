@@ -1,0 +1,28 @@
+{
+  "name": "vuesyntax",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "webpack": "^5.42.1",
+    "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "jquery": "^3.6.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yoga2015/VueSyntax.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Yoga2015/VueSyntax/issues"
+  },
+  "homepage": "https://github.com/Yoga2015/VueSyntax#readme",
+  "description": ""
+}
