@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>初始vue</title>
+  <!-- <script type="text/javascript" src="./js/vue.min.js"></script> -->
+  <script type="text/javascript" src="./js/vue.js"></script>
+</head>
+
+<body>
+  <!--1、准备好一个容器 -->
+  <div class="root">
+    <h1>hello,walking</h1> <!--此时这里是写死的，vue并没有工作 -->
+    <h1>hello,{{name}}</h1>
+  </div>
+
+
+  <div class="root"> <!-- 重复一个一个容器 -->
+    <h1>hello,{{name}}</h1>
+  </div>
+
+  <!-- 全局配置： 解决浏览器的温馨提示 -->
+  <script type="text/javascript">
+    Vue.config.productionTip = false;  //阻止 vue 在启动时生成生产提示。
+
+    //2、创建 Vue实例  ，参数只能传一个对象 ，这种对象叫 配置对象
+    new Vue({
+      // el:document.getElementById('root'),
+      el: '#root',   //el是 element ，用于指定当前Vue实例为哪个容器服务，值通常为 css选择器 字符串
+      data: {    //data  中用于存储 数据，数据供 el所指定的容器去使用。值我们暂时先写成一个对象。
+        name: 'Amy'
+      }
+    });
+  </script>
+</body>
+
+</html>
