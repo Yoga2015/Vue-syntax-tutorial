@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数据绑定</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <!-- Vue中有两种数据绑定的方式：
+  1、单向绑定 v-bind ：数据只能从data流向页面。
+  2、双向绑定 v-model ： 数据不仅能从data 流向页面，还可以从页面流向data
+  备注：
+  （1）双向绑定一般都应用在表单类元素上（如： input、 select、textarea等）
+  （2）v-model:value 可以简写为 v-model 因为v-model默认收集的 就是 value 的值 -->
+
+  <!--2、在页面中声明一个将要被vue所控制的DOM区域 -->
+  <div id="root">
+
+    <!-- 普通写法
+    单向数据绑定 v-bind : <input type="text" v-bind:value="name"><br>
+    双向数据绑定 v-model : <input type="text" v-model:value="name"> -->
+
+    <!-- 简写法 -->
+    单向数据绑定 v-bind : <input type="text" :value="name"><br>
+    双向数据绑定 v-model : <input type="text" v-model="name">
+  </div>
+
+  <!-- 如下代码是错误的，因为v-model 只能应用在表单类元素 （输入类元素）上 -->
+  <!-- <h2 v-model:x="name">hello</h2> -->
+
+  <!-- 1、导入vue.js的script脚本文件 -->
+  <script src="./js/vue.js"></script>
+
+
+  <script type="text/javascript">
+    Vue.config.productionTip = false;  //阻止 vue在启动是生成的生产提示
+
+    // 3、创建vm实例对象 （vue实例对象）
+    new Vue({
+      // 3.1指定当前 vm实例要控制页面的哪个区域
+      el: '#root',  //el 指向的选择器，就是View视图区域
+      // 3.2 指定 Model数据源     
+      data: {
+        name: '黑马程序员',
+      }
+    })
+  </script>
+</body>
+
+</html>

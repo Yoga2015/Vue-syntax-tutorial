@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>el与data的两种写法</title>
+</head>
+
+<body>
+  data 与 el的2种写法：
+  el 有2种写法：
+  1、new Vue时配置el属性
+  2、先创建vue 实例，随后再通过vm.$mount('root') 指定 el的值
+  data 有2种写法：
+  1、对象式
+  2、函数式
+  如何选择： 学习到组件时，data必须使用函数式，否则会报错。
+
+  <!--2、准备好一个容器，这是在页面中声明一个将要被vue所控制的DOM区域 -->
+  <div id="root">你好！{{name}}</div>
+
+  <!-- 1、导入vue.js的script脚本文件 -->
+  <script src="./js/vue.js"></script>
+
+  <!-- 3. 创建 Vue 的实例对象 -->
+  <script type="text/javascript">
+    Vue.config.productionTip = false;  //阻止 vue在启动是生成的生产提示
+
+    // // el的两种写法 ：
+    // const v = new Vue({
+    //   // el:"root",  //el 第一种写法：这里指定 vm 实例要控制页面上的哪个区域，需要提前想好，不够好用
+    //   data: {
+    //     name: '张三'
+    //   }
+    // })
+    // console.log(v);
+
+    // v.$mount('#root');  // el 第二种写法
+
+    // data的两种写法 ：
+    new Vue({
+      el: '#root',
+
+      // data 第一种写法： 对象式
+      // data: {
+      //   name: 'zhangsan'
+      // }
+
+      // data 第二种写法： 函数式   
+      data: function () {   //即 data的属性是一个函数，此函数是 vue帮我们调用的
+        console.log('@@@', this);   // @@@ Vue 此处的this 是 Vue实例对象
+        return {
+          name: "zhansan"
+        }
+      }
+
+    })
+  </script>
+</body>
+
+</html>

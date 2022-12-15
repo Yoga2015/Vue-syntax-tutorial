@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVVM模型</title>
+</head>
+
+<body>
+  <!-- 2、希望 Vue 能够控制下面的这个 div，帮我们在把数据填充到 div 内部 -->
+  <div id="app">
+    <h1>学校名称：{{name}}</h1> vue实例里有这个 name 的属性
+    <h1>学校地址：{{address}}</h1> vue实例里有这个 address 的属性
+    <h1>测试一下1：{{1+1}}</h1>
+    <!-- <h1>测试一下2：{{abc}}</h1> vue实例里没有这个 abc 的属性 -->
+
+    <h1>测试一下3：{{$options}}</h1> vue实例里有这个 $options 的属性
+    <h1>测试一下4：{{_c}}</h1> vue实例里有这个 _c 的属性
+
+  </div>
+
+  <!-- 1. 导入 Vue 的库文件，在 window 全局就有了 Vue 这个构造函数 -->
+  <script src="./js/vue.js"></script>
+
+  <!-- 3. 创建 Vue 的实例对象 -->
+  <script type="text/javascript">
+    Vue.config.productionTip = false;  //阻止 vue在启动是生成的生产提示
+
+    // 创建 Vue 的实例对象
+    const vm = new Vue({
+      //3.1 el 属性是固定的写法，表示当前 vm 实例要控制页面上的哪个区域，接收的值是一个选择器
+      el: '#app',
+      //3.2 data 对象就是要渲染到页面上的数据
+      data: {
+        name: '清华大学',
+        address: '北京'
+      }
+    })
+    console.log(vm);
+
+  </script>
+</body>
+
+</html>

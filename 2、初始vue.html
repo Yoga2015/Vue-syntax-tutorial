@@ -4,19 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <title>初始vue</title>
-  <!-- <script type="text/javascript" src="./js/vue.min.js"></script> -->
+  <script type="text/javascript" src="./js/vue.min.js"></script>
   <script type="text/javascript" src="./js/vue.js"></script>
 </head>
 
 <body>
   <!--1、准备好一个容器 -->
-  <div class="root">
-    <h1>hello,walking</h1> <!--此时这里是写死的，vue并没有工作 -->
+  <div id="root">
+    <!-- <h1>hello,walking</h1> 此时这里是写死的，vue并没有工作 -->
     <h1>hello,{{name}}</h1>
   </div>
 
 
-  <div class="root"> <!-- 重复一个一个容器 -->
+  <div id="root"> <!-- 重复一个一个容器 -->
     <h1>hello,{{name}}</h1>
   </div>
 
