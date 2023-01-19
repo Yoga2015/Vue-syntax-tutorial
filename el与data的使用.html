@@ -18,19 +18,19 @@
   2、函数式
   如何选择： 学习到组件时，data必须使用函数式，否则会报错。
 
-  <!--2、准备好一个容器，这是在页面中声明一个将要被vue所控制的DOM区域 -->
-  <div id="root">你好！{{name}}</div>
-
   <!-- 1、导入vue.js的script脚本文件 -->
   <script src="./js/vue.js"></script>
+
+  <!--2、准备好一个容器，这是在页面中声明一个将要被vue所控制的DOM区域 -->
+  <div id="root">你好！{{name}}</div>
 
   <!-- 3. 创建 Vue 的实例对象 -->
   <script type="text/javascript">
     Vue.config.productionTip = false;  //阻止 vue在启动是生成的生产提示
 
-    // // el的两种写法 ：
+    // el的两种写法 ：
     // const v = new Vue({
-    //   // el:"root",  //el 第一种写法：这里指定 vm 实例要控制页面上的哪个区域，需要提前想好，不够好用
+    //   // el:"root",   // el 第一种写法：这里指定 vm 实例要控制页面上的哪个区域，需要提前想好，不够好用
     //   data: {
     //     name: '张三'
     //   }
@@ -48,16 +48,18 @@
       //   name: 'zhangsan'
       // }
 
-      // data 第二种写法： 函数式   
+      // data 第二种写法： 函数式       这个就是 由Vue管理的函数
       data: function () {   //即 data的属性是一个函数，此函数是 vue帮我们调用的
-        console.log('@@@', this);   // @@@ Vue 此处的this 是 Vue实例对象
+        console.log('@@@', this);   // @@@ ，此处的this 是 Vue实例对象
         return {
           name: "zhansan"
         }
-      }
+      },
 
-    })
+    });
+
   </script>
+
 </body>
 
 </html>

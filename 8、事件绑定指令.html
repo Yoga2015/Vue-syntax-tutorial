@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>事件绑定指令</title>
+  <!-- 1、引入开发版的 Vue , 在 window全局就有了Vue 这个构造函数 -->
+  <script src="./js/vue.js"></script>
+</head>
+
+<body>
+  <!--2、准备好一个容器，希望 Vue能够控制下面的这个div,帮我们再把数据填充到 div内部 -->
+  <div id="app">
+    <p>count 的值：{{count}}</p>
+
+    <!-- <button v-on:click="addCount(1)"> + 1</button> 简写如下： -->
+    <button @click="addCount(1)"> + 1</button>
+    <button @click="subCount(1)"> - 1</button>
+  </div>
+
+  <!-- 3、创建 Vue 的实例对象 -->
+  <script type="text/javascript">
+
+    //3.1、创建 Vue 实例  ，参数只能传一个对象 ，这种对象叫 配置对象
+    const vm = new Vue({
+
+      el: '#app',   // el : document.getElementById('root'),
+      data: {
+        count: 0,
+      },
+
+      // methods 的作用 ：就是定义事件的处理函数
+      methods: {
+        addCount(n) {
+          // this.count = this.count + n;   ===  this.count += n;
+          this.count += n;
+        },
+        subCount(n) {
+          this.count -= n;
+        },
+      }
+    });
+
+  </script>
+</body>
+
+</html>

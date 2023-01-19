@@ -26,9 +26,10 @@
 
     console.log(obj1.x);  // 100
     console.log(obj2.x);  // 100
-    console.log(obj2);  // {y: 300}
+    console.log(obj2);  // {y: 300}  通过 Object.defineProperty 添加的属性，默认不可遍历
 
-    // 以上是最简单的数据代理
+    obj2.x = 500;
+    console.log(obj1.x);   // 500
 
   </script>
 </body>

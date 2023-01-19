@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>vue</title>
-  <!-- 1、下载开发版本的Vue -->
+  <!-- 1、引入 开发版本的 Vue -->
   <script type="text/javascript" src="../bootstrap/js/vue.js"></script>
   <!-- <script type="text/javascript" src="../bootstrap/js/vue.min.js"></script> -->
 </head>
@@ -15,17 +15,17 @@
   <ul id="list"></ul>
 
   <script>
-    //1、 原生JavaScript 实现
+    //1、 原生 JavaScript 实现
     // 命令式编码，(就像我叫你动一下，你就动一下，我再叫你动一下，你才再动一下。。)
 
-    // 1、提前准备好的数据 
+    // 1、自定义一个 数组 代替 数据库，数组 里面 装着 每个用户的数据 
     let persons = [
       { id: '001', name: 'zhangsan', age: 18 },
       { id: '002', name: 'lisi', age: 17 },
-      { id: '001', name: 'wangwu', age: 120 },
+      { id: '001', name: 'wangwu', age: 20 },
     ]
 
-    //2、 准备 HTML字符串 容器
+    //2、 准备 HTML字符串 容器 ，将来用来 拼接字符串
     let htmlStr = '';
 
     //3、遍历数据 拼接 html字符串

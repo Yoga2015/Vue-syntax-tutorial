@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>姓名案例_计算属性实现</title>
+  <!-- 1、导入 vue.js -->
+  <script src="./js/vue.js"></script>
+</head>
+
+<body>
+
+  <!-- 2、准备好一个容器，是在页面中声明一个将要被vue所控制的DOM区域 -->
+  <div id="root">
+    姓：<input type="text" v-model='firstName'><br><br>
+    名：<input type="text" v-model='lastName'><br><br>
+    全名：<span>{{fullName}}</span>
+
+  </div>
+
+  <!-- 3、创建 vue 的实例对象 -->
+  <script type="text/javascript">
+    Vue.config.productionTip = false;  //阻止 vue在启动是生成的生产提示
+
+    const vm = new Vue({
+      el: '#root',
+      data: {
+        firstName: '张',
+        lastName: '三',
+      },
+      computed: {     //计算属性
+        fullName: {
+          // get 有什么作用？ 当有人读取fullName时,get就会被调用,且返回值就作为fullName的值
+          // get 什么时候调用？ 1、初次读取 fullName 时。 2、所依赖的数据发生变化时
+          get() {
+            console.log('get 被调用了');
+            console.log(this);  //此处的this 是 vm
+            return this.firstName + '-' + this.lastName;
+          }
+        }
+      }
+
+    });
+
+  </script>
+
+</body>
+
+</html>

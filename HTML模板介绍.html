@@ -1,0 +1,47 @@
+<!-- 声明文档类型：HTML超文本标记语言，第五个版本，具有向下兼容低版本的 -->
+<!DOCTYPE html>
+<!-- language 【属性：语言】 en = english 、ch = china -->
+<html lang="en">
+<!-- 头部标签，定义文档的信息，看不到的 -->
+
+<head>
+  <!-- meta :提供有关页面的元信息，针对 搜索引擎 来更新描述的内容 或 相关的关键词 -->
+  <!-- charset 字符集 ：UTF-8 :万国码 => 通用语言 -->
+  <meta charset="UTF-8">
+  <!-- 处理兼容 IE6 \ IE7 \ IE8  -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- 移动端处理适配：不同的手机之间，屏幕尺寸不一样 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 网页的标题 -->
+  <title>Vue</title>
+  <!-- 1、开发版本的vue -->
+  <script src="./js/vue.js"></script>
+</head>
+
+<body>
+  <!--2、提前准备好一个容器，为 vue实例 提供模板，承接 vue 的劳动成果 -->
+  <div id="root">
+    <h3>hello，walking!</h3>
+    <p> 这个walking是写死的，实际应该是动态数据，此时 vue 并没有工作</p>
+    <p> 这个walking 应该用一个类似于变量的东西代替：如下： </p>
+
+    <h3>hello，{{name}}!</h3>
+  </div>
+
+  <script type="text/javascript">
+    // 3、全局配置 : 解决浏览器的温馨提示
+    Vue.config.productionTip = false;   //阻止vue 在启动是生成生产提示
+    // 4、创建 vue 实例 ，参数只能传一个对象，这种 对象 叫 配置对象
+    new Vue({
+      // 5、 指定当前 vue实例要控制页面的哪个区域
+      el: '#root', //el 是 element ，用于指定当前 Vue实例为哪个容器服务，值通常为css 选择器字符串
+      // 6、指定 model 数据源     凡是需要变化的数据都放在 vue实例的data里
+      data: {
+        name: 'amy',      //一旦data中的数据发生改变，那么页面中用到该数据的地方也会自动更新    
+      }
+    });
+
+  </script>
+
+</body>
+</html>

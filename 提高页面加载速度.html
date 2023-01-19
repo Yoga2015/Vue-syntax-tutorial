@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>页面加载速度提高 10 倍的小技巧</title>
+  <link rel="stylesheet" href="./css/load-speed-up.css">
+  <!-- 对于打印媒体：加载和解析print.css时不会阻塞渲染，只会在打印模式加载该样式 -->
+  <link rel="stylesheet" href="./css/print.css">
+  <!-- 只会在移动设备这样的小屏幕才会加载和解析该样式 -->
+  <link rel="stylesheet" href="./css/mobile.css" media="screen and (max-width:480px)">
+  <!-- 不会在大屏幕上加载和解析该样式 -->
+  <link rel="stylesheet" href="./css/tablet.css" media="sreen and (max-width:1080px)">
+  <!-- 对于移动屏幕 横屏 或 竖屏，也可以使用不同的css文件 -->
+  <link rel="stylesheet" href="./css/portrait.css" media="(orientation:portrait)">
+
+</head>
+
+<body>
+  <section class="header">
+    <h1>我的博客</h1>
+    <img src="./img/31.png" loading="lazy">
+  </section>
+  <section class="content">
+    <h1>我的博客</h1>
+    <img src="./img/32.png" loading="lazy">
+  </section>
+
+  <section class="footer">
+    <h1>我的博客</h1>
+    <img src="./img/33.png" loading="lazy">
+  </section>
+
+</body>
+
+</html>

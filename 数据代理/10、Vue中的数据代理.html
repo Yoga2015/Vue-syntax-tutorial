@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vue</title>
+  <title>Vue中的数据代理</title>
+  <!-- 1、导入 vue.js -->
+  <script src="./js/vue.js"></script>
 </head>
 
 <body>
 
   <!--2、准备好一个容器，是在页面中声明一个将要被vue所控制的DOM区域 -->
   <div id="root">
-
+    <h1>学校名称：{{name}}</h1>
+    <h1>学校地址：{{address}}</h1>
   </div>
-
-  <!-- 1、导入vue.js的script脚本文件 -->
-  <script src="./js/vue.js"></script>
-
 
   <script type="text/javascript">
     Vue.config.productionTip = false;  //阻止 vue在启动是生成的生产提示
 
+    const vm = new Vue({     // vm 存储了 el 和  data 
+      el: '#root',
+      data: {           // vm._data = data
+        name: '清华大学',
+        address: '北京'
+      }
+    });
+
   </script>
+
 </body>
+
 </html>

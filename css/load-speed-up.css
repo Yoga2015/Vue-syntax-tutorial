@@ -1,0 +1,15 @@
+.header {
+  background: rgba(12, 166, 237, 0.821);
+  height: 700px;
+  font: italic small-caps bold 1.5em/50px '宋体';
+}
+
+.content {
+  background: pink;
+  height: 700px;
+}
+
+.footer {
+  background: rgba(10, 200, 252, 0.954);
+  height: 700px;
+}

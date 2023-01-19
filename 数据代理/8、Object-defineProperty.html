@@ -27,7 +27,7 @@
     // console.log(Object.keys(person));  //  ['name', 'sex']
 
     // for...in 既能遍历数组也能遍历对象
-    // 通过 Object.defineProperty添加的属性， for in 也无法遍历 出来
+    // 通过 Object.defineProperty 添加的属性， for in 也无法遍历 出来
     for (let key in person) {
       console.log(person[key]);  //李四  男
     }
@@ -67,7 +67,7 @@
 
 
 
-    // 使用setter 和 getter 可以控制 对 对象的访问 
+    // 通过 使用 setter 和 getter 可以控制 外界 对 对象的访问 
     let number = 25
     let person3 = {
       id: 1,
@@ -83,11 +83,11 @@
       // writable: true,  // 控制属性是否可以被修改，默认值是 false  
       // configurable: true, //控制属性是否可以被删除，默认值是 false
 
-  // 使用 setter 和 getter后 不注释上面会报错 
-  // TypeError: Invalid property descriptor.
-  // Cannot both specify accessors and a value or writable attribute, #<Object>
-  // at Function.defineProperty(<anonymous>)
-  // 无效的属性描述符。不能在 Function.defineProperty (<anonymous>)中同时指定访问器和值或可写属性(< Object>)
+      // 使用 setter 和 getter后 不注释上面会报错 
+      // TypeError: Invalid property descriptor.
+      // Cannot both specify accessors and a value or writable attribute, #<Object>
+      // at Function.defineProperty(<anonymous>)
+      // 无效的属性描述符。不能在 Function.defineProperty (<anonymous>)中同时指定访问器和值或可写属性(< Object>)
 
       // 当有人读取 person 的age属性时，get 函数（getter）就会被调用，且返回值就是age的值
       get() {
