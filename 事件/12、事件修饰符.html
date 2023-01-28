@@ -56,8 +56,6 @@
 
   <!-- 2、准备好一个容器，是在页面中声明一个将要被vue所控制的DOM区域 -->
   <div id="root">
-    <h3>欢迎来到{{name}}学习</h3>
-
     <!-- prevent : 阻止默认事件（常用） -->
     <a href="https://www.baidu.com/" @click.prevent="showInfo">点击我跳转百度页面</a>
 
@@ -65,7 +63,7 @@
     <div class="demo1" @click="showInfo">
       <!-- <button @click.stop="showInfo">点击我提示信息</button> -->
 
-      <!-- 修饰符 可以连续写 -->
+      <!--修饰符 可以连续写 -->
       <a href="https://www.baidu.com/" @click.stop.prevent="showInfo">点击我提示信息</a>
     </div>
 
@@ -92,17 +90,14 @@
       <li>3</li>
       <li>4</li>
     </ul>
-
   </div>
 
   <!-- 3、创建 vue 的实例对象 -->
   <script type="text/javascript">
-    Vue.config.productionTip = false;  //阻止 vue在启动是生成的生产提示
-
     new Vue({
       el: '#root',
       data: {           // vm._data = data
-        name: '清华大学',
+
       },
       methods: {
         showInfo(e) {
@@ -122,8 +117,8 @@
         }
       }
     });
-
   </script>
+
 </body>
 
 </html>

@@ -9,21 +9,22 @@
 </head>
 
 <body>
+  
   <!--2、准备好一个容器，希望 Vue能够控制下面的这个div,帮我们再把数据填充到 div内部 -->
   <div id="app">
-    <p>count 的值：{{count}}</p>
-
+    <p>count 的值：{{count}} </p>
     <!-- <button v-on:click="addCount(1)"> + 1</button> 简写如下： -->
-    <button @click="addCount(1)"> + 1</button>
-    <button @click="subCount(1)"> - 1</button>
+      <button @click="addCount(1)"> + 1</button>
+      <button @click="subCount(1)"> - 1</button>
+    <!-- vue提供了内置变量，名字叫做 $event,它就是原生DOM的事件对象 e -->
+      <button @click="addCount(1,$event)"> + 1</button>
+      <button @click="subCount(1,$event)"> - 1</button>
   </div>
 
   <!-- 3、创建 Vue 的实例对象 -->
   <script type="text/javascript">
-
     //3.1、创建 Vue 实例  ，参数只能传一个对象 ，这种对象叫 配置对象
     const vm = new Vue({
-
       el: '#app',   // el : document.getElementById('root'),
       data: {
         count: 0,
@@ -31,17 +32,24 @@
 
       // methods 的作用 ：就是定义事件的处理函数
       methods: {
-        addCount(n) {
+        addCount(n, e) {
           // this.count = this.count + n;   ===  this.count += n;
           this.count += n;
+          if (this.count % 2 === 0) {
+            //偶数
+            e.target.style.backgroundColor = 'red';
+          } else {
+            // 奇数
+            e.target.style.backgroundColor = '';
+          }
         },
-        subCount(n) {
+        subCount(n, e) {
           this.count -= n;
         },
       }
     });
-
   </script>
+
 </body>
 
 </html>

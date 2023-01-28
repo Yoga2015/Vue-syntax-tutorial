@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>列表渲染指令</title>
+  <!-- 1、引入开发版的 Vue , 在 window全局就有了Vue 这个构造函数 -->
+  <script src="./js/vue.js"></script>
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+</head>
+
+<body>
+  key 值的注意事项：<br>
+  key 的值只能是字符串 或 数字类型<br>
+  key 的值必须具有唯一性 （即： key 的值不能重复）<br>
+  建议把 数据项 id 属性的值 作为 key 的值 （因为id 属性的值具有唯一性） <br>
+  使用 index 的值 当作 key 的值 没有任何意义（因为index的值不具有唯一性） <br>
+  建议使用 v-for指令 时一定要指定 key 的值 （既提升性能，又防止列表状态紊乱） <br>
+
+  <!--2、准备好一个容器，希望 Vue能够控制下面的这个div,帮我们再把数据填充到 div内部 -->
+  <div id="app">
+    <ul>
+      <!-- item in items ， items 是待循环的数组 ，item 是被循环的每一项 -->
+      <li v-for="item in list">姓名：{{item.name}}</li>
+    </ul>
+
+    <table class="table table-bordered table-hover">
+      <thead>
+        <th>索引</th>
+        <th>id</th>
+        <th>姓名</th>
+      </thead>
+      <tbody>
+        <!-- 当需要索引，才再加 (item,index) -->
+        <tr v-for="(item,index) in list" :key="item.id" :title="item.name + index">
+          <td>{{index}}</td>
+          <td>{{item.id}}</td>
+          <td>{{item.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 3、创建 Vue 的实例对象 -->
+  <script type="text/javascript">
+    //3.1、创建 Vue 实例  ，参数只能传一个对象 ，这种对象叫 配置对象
+    const vm = new Vue({
+      el: '#app',   // el : document.getElementById('root'),
+      data: {
+        list: [    //列表数据
+          { id: 1, name: '张三' },
+          { id: 2, name: '李四' },
+          { id: 3, name: '王五' },
+        ],
+      }
+    });
+  </script>
+
+</body>
+
+</html>
