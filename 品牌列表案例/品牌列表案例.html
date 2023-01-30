@@ -6,20 +6,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>品牌列表案例</title>
+  <!-- 导入boostrap样式 -->
   <link rel="stylesheet" href="./lib/bootstrap.css">
-  <link rel="stylesheet" href="./css/brandlist.css">
+  <!-- 导入 vue.js -->
+  <script src="./lib/vue-2.6.12.js"></script>
 </head>
 
 <body>
-
   <div id="app">
+
     <!-- 卡片区域 -->
     <div class="card">
-      <div class="card-header">
-        添加品牌
-      </div>
+      <!-- 添加品牌的表单区域 -->
       <div class="card-body">
-        <!-- 添加品牌的表单区域 -->
         <form>
           <div class="form-row align-items-center">
             <div class="col-auto">
@@ -27,18 +26,19 @@
                 <div class="input-group-prepend">
                   <div class="input-group-text">品牌名称</div>
                 </div>
-                <input type="text" class="form-control" placeholder="请输入品牌名称">
+                <input type="text" class="form-control" placeholder="请输入品牌名称" v-model.trim="brand">
               </div>
             </div>
             <div class="col-auto">
-              <button type="submit" class="btn btn-primary mb-2">添加</button>
+              <!-- 因为这是 表单  , 当一点击 button 就 默认提交表单，就会刷新网页，需要阻止默认刷新 -->
+              <button type="submit" class="btn btn-primary mb-2" @click.prevent="add">添加</button>
             </div>
           </div>
         </form>
       </div>
     </div>
 
-    <!-- 表格区域 -->
+    <!-- 表格区域  ，隔行换色 table-striped-->
     <table class="table table-bordered table-hover table-striped">
       <thead>
         <tr>
@@ -50,24 +50,77 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>宝马</td>
+        <tr v-for="item in list" :key="item.id">
+          <td>{{item.id}}</td>
+          <td>{{item.name}}</td>
           <td>
             <div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="customSwitch1">
-              <label class="custom-control-label" for="customSwitch1">已禁用</label>
+              <!-- id 属性值 是不能写死的， 应该是 动态绑定的生成的 （用v-bind），进行拼接 -->
+              <input type="checkbox" class="custom-control-input" :id="'cb'+ item.id" v-model="item.status">
+              <!-- label 标签 的 for 属性 应当 与 相关元素的 id 属性相同。 -->
+              <label class="custom-control-label" :for="'cb'+ item.id" v-if="item.status">已启用</label>
+              <label class="custom-control-label" :for="'cb'+ item.id" v-else>已禁用</label>
             </div>
           </td>
-          <td>2022-02-02 11:34:07</td>
+          <td>{{item.time}}</td>
           <td>
-            <a href="javascript:;">删除</a>
+            <a href="javascript:;" @click="remove(item.id)">删除</a>
           </td>
         </tr>
       </tbody>
     </table>
+
   </div>
 
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        //用户输入的品牌名称
+        brand: '',
+        // nextId 是下一个, 可用的id
+        nextId: 4,
+        // 品牌的列表数据
+        list: [
+          { id: 1, name: '丰田', status: true, time: new Date() },
+          { id: 2, name: '宝马', status: false, time: new Date() },
+          { id: 3, name: '宾利', status: true, time: new Date() },
+        ],
+      },
+      methods: {
+        //1、删除品牌功能 ： 点击链接，删除对应的品牌信息
+        remove(id) {
+          // 为了验证这个事件绑定确定绑上了，先不要写业务逻辑，这就是写一步测一步，把bugger消除在萌芽里
+          console.log(id);
+          // item 是循环的每一项，如果当前循环项的 item.id 不等于 要删的那条id，就把它过滤出来
+          this.list = this.list.filter(item => item.id !== id);
+        },
+
+        //2、添加品牌功能 ：当点击按钮后，检查 brand的值 
+        add() {
+          //2.1 如果判断到 brand的值 为空字符串，就提示用户需正确输入，然后 return 出去
+          if (this.brand === '') {
+            alert('必须填写品牌名称！')
+            return
+          }
+          //2.2 如果没有被return 出去，应该执行添加的逻辑
+          // (1)、先把要添加的品牌对象，整理出来
+          let obj = {
+            id: this.nextId,
+            name: this.brand,
+            status: true,
+            time: new Date(),
+          };
+          // (2)、往 this.list 数组中push 步骤 1 中得到的对象
+          this.list.push(obj);
+          // (3)、清空 this.brand 让this.nextId 自增 +1
+          this.brand = '';
+          this.nextId++;
+        },
+      },
+
+    });
+  </script>
 </body>
 
 </html>

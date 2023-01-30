@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>深度侦听</title>
+  <!--1、导入 vue.js -->
+  <script src="./js/vue.js"></script>
+  <!-- 导入 jQuery -->
+  <script src="./js/jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+  <!--2、准备好一个容器，希望Vue能够控制下面的这个div,帮我们再把数据填充到div 内部 -->
+  <div id="app">
+    <input type="text" v-model="info.username">
+  </div>
+
+  <!-- 3、创建 Vue 的实例对象 -->
+  <script type="text/javascript">
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        // 用户的信息对象
+        info: {
+          username: 'admin',
+        }
+      },
+      // 所有的侦听器 都必须 定义到 watch节点 下   (需vue来帮忙监听的数据 都放在 watch节点下)
+      watch: {
+        // 侦听 对象的变化，深度侦听
+        info: {
+          handler(newVal) {
+            console.log(newVal);
+          },
+          // 开启深度监听，只要对象中任何一个属性变化了，都会触发 “对象的侦听器”
+          deep: true,
+        },
+        
+        // 如果要侦听的是对象的子属性的变化，则必须包裹一层单引号
+        'info.username'(newVal){
+            console.log(newVal);
+        },
+      },
+    });
+  </script>
+
+</body>
+
+</html>

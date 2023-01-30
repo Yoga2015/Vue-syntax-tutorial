@@ -42,7 +42,7 @@
         addNewUser() {
           this.userlist.unshift({ id: this.nextId, name: this.name });
           this.name = '';   // 前一个渲染完后记得清空输入框
-          this.nextId++;    // 每增加一个 id 就递增
+          this.nextId++;    // 每添加一个， id 自增 +1
         }
       }
     });

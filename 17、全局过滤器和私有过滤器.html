@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全局过滤器 和 私有过滤器</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <p>message的值是:{{message | capitalize}}</p>
+  </div>
+
+  <div id="app2">
+    <p>message的值是:{{message | capitalize | maxLength}}</p>
+  </div>
+
+  <script>
+
+    // 全局过滤器  -  首字母大写
+    Vue.filter('capitalize', function (str) {
+      // 字符串中由 chartAt()方法 ，这个方法接收索引值，表示从字符串中把索引对应的字符，获取出来
+      const first = str.charAt(0).toUpperCase();
+      // 字符串的slice()方法，可以截取字符串，从指定索引往后截取
+      const other = str.slice(1);
+      return first + other + '~~~';    //如果全局过滤器 和 私有过滤器 名字一致，会根据 就近原则 调用私有过滤器
+    });
+
+    // 全局过滤器 - 控制文本的最大长度
+    Vue.filter('maxLength', (str, len = 9) => {
+      if (str.length <= len) return str
+      return str.slice(0, len) + '~~~'
+    })
+
+    const vm1 = new Vue({
+      el: '#app',
+      data: {
+        message: 'hello vue.js'
+      },
+      // 过滤器 本质上是 函数，它是 定义到 filters节点之下
+      filters: {
+        capitalize(val) {    //过滤器函数的 形参 val , 规则定死永远都是"管道符"前面的那个值
+          // 字符串中由 chartAt()方法 ，这个方法接收索引值，表示从字符串中把索引对应的字符，获取出来
+          const first = val.charAt(0).toUpperCase();
+          // 字符串的slice()方法，可以截取字符串，从指定索引往后截取
+          const other = val.slice(1);
+          return first + other;    // Hello vue.js   过滤器中 ，一定要有一个返回值
+        }
+      },
+    });
+
+    const vm2 = new Vue({
+      el: '#app2',
+      data: {
+        message: 'hello vue.js'
+      },
+      filters: {
+
+      },
+    });
+  
+  </script>
+
+</body>
+
+</html>

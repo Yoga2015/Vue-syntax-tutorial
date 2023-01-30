@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>对象格式的侦听器</title>
+  <!--1、导入 vue.js -->
+  <script src="./js/vue.min.js"></script>
+  <!-- 导入 jQuery -->
+  <script src="./js/jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+
+  <!--2、准备好一个容器，希望Vue能够控制下面的这个div,帮我们再把数据填充到div 内部 -->
+  <div id="app">
+    <input type="text" v-model="username">
+  </div>
+
+  <!-- 3、创建 Vue 的实例对象 -->
+  <script type="text/javascript">
+
+    const vm = new Vue({
+
+      el: '#app',
+      data: {
+        username: 'admin',
+      },
+      // 所有的侦听器 都必须 定义到 watch节点 下   (需vue来帮忙监听的数据 都放在 watch节点下)
+      watch: {
+        // 定义对象格式的侦听器
+        username: {
+          // handler 是固定写法，表示 当username的值发生变化时，自动调用 handler处理函数
+          handler: function (newVal) {
+            // 调用 jQuery 中的ajax 发起请求，判断 newVal是否被占用！!
+            $.get('https://www.escook.cn/api/finduser/' + newVal, function (result) {
+              console.log(result);
+            });
+          },
+          // immediate 选项的默认值是 false 
+          // immediate的作用是: 控制侦听器是否自动触发一次
+          // 表示页面初次渲染好之后，就立即触发当前的watch侦听器
+          immediate: true,
+        },
+      },
+
+    });
+  </script>
+
+</body>
+
+</html>

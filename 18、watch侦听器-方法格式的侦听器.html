@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>watch侦听器-方法格式的侦听器</title>
+  <!--1、导入 vue.js -->
+  <script src="./js/vue.min.js"></script>
+  <!-- 导入 jQuery -->
+  <script src="./js/jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+
+  <!--2、准备好一个容器，希望Vue能够控制下面的这个div,帮我们再把数据填充到div 内部 -->
+  <div id="app">
+    <input type="text" v-model="username">
+  </div>
+
+  <!-- 3、创建 Vue 的实例对象 -->
+  <script type="text/javascript">
+    //3.1、创建 Vue 实例  ，参数只能传一个对象 ，这种对象叫 配置对象
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        username: 'admin',
+      },
+      // 所有的侦听器 都必须 定义到 watch节点 下
+      watch: {
+        // 侦听器本质上就是一个函数，要监视哪个数据的变化，就把 数据名 作为 方法名 即可
+        // 监听 username值 的变化 。newVal 是 “变化后的新值” ，oldVal 是 “变化之前的旧值”
+        username(newVal, oldVal) {    // 传参时，newVal 新值在前，oldVal 旧值在后。
+          // console.log('监听到了username值的变化', newVal, oldVal);  //这里的数据不是来自数据库
+
+          // 调用 jQuery 中的ajax 发起请求，判断 newVal是否被占用！!
+          $.get('https://www.escook.cn/api/finduser/' + newVal, function (result) {
+            console.log(result);
+          });
+        },
+      },
+    });
+  </script>
+
+</body>
+
+</html>
