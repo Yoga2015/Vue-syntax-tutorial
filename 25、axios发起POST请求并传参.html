@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用 axios 发起POST请求,并传参</title>
+  <!-- 导入 axios -->
+  <script src="./js/axios.js"></script>
+  <!-- 导入jQuery -->
+  <script src="./js/jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+
+  <button id="btnPost">发起POST请求</button>
+
+  <script>
+    $(function () {
+
+      $("#btnPost").click(async function () {
+
+        // 如果调用某个方法的返回值是 Promise 实例 ,则前面可以添加 await
+        // await 只能用在 被 async  ' 修饰 ' （即：包裹）的方法中。 
+        const result = await axios({
+
+          method: "POST",   //请求方法
+
+          url: 'http://www.liulongbin.top:3006/api/post',   // 请求地址
+
+          data: {      // 当发起 POST请求时，参数应该放在 data:{}对象 里
+            name: 'zs',
+            age: 20,
+          },
+
+        });
+
+        console.log(result); // {data: {…}, status: 200, statusText: 'OK',}
+
+      });
+
+    })
+  </script>
+
+</body>
+
+</html>

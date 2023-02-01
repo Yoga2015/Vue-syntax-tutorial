@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用 axios 发起POST请求,并传参,并使用解构赋值</title>
+  <!-- 导入 axios -->
+  <script src="./js/axios.js"></script>
+  <!-- 导入jQuery -->
+  <script src="./js/jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+
+  <button id="btnGet">发起GET请求</button>
+  <button id="btnPost">发起POST请求</button>
+
+  <script>
+    $(function () {
+
+      $("#btnGet").click(async function () {
+
+        // 1、调用 axios 之后，使用 async/await 进行简化
+        // 2、使用解构赋值， 从 axios封装的大对象中，把data属性解构出来
+        // 3、把解构出来的 data 属性，使用冒号 ： 进行重命名，一般都重命名为 { data: res }
+
+        const { data: res } = await axios({
+          method: 'GET',
+          url: 'http://www.liulongbin.top:3006/api/getbooks',
+          params: {   // 当 GET请求，URL地址中包含参数，应该写在 params:{}对象 里
+            id: 1,
+          },
+        })
+
+        console.log(res.data);
+
+      });
+
+
+      $("#btnPost").click(async function () {
+
+        // 1、调用 axios 之后，使用 async/await 进行简化
+        // 2、使用解构赋值， 从 axios封装的大对象中，把data属性解构出来
+        // 3、把解构出来的 data 属性，使用冒号 ： 进行重命名，一般都重命名为 { data: res }
+
+        // 解构赋值的时候，使用 ： 进行重命名  
+        const { data: res } = await axios({
+
+          method: "POST",   //请求方法
+
+          url: 'http://www.liulongbin.top:3006/api/post',   // 请求地址
+
+          data: {      // 当发起 POST请求时，参数应该放在 data:{}对象 里
+            name: 'zs',
+            age: 20,
+          },
+
+        });
+
+        console.log(res.data);
+
+      });
+
+    });
+  </script>
+
+
+
+</body>
+
+</html>

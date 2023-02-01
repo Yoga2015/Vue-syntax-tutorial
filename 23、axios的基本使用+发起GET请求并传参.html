@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>axios的基本使用</title>
+  <!-- 导入 axios -->
+  <script src="./js/axios.js"></script>
+</head>
+
+<body>
+  <script>
+    // axios 的基础语法    测试地址：http://www.liulongbin.top:3006/api/getbooks
+    // 调用 axios（）方法，得到的返回值 是 Promise对象
+    const result = axios({
+      method: 'GET',    // 请求方法
+      url: 'http://www.liulongbin.top:3006/api/getbooks',    // 请求的地址
+
+      params: {   //可选， 当 GET请求，URL地址中包含参数，应该写在 params:{}对象 里
+
+      },
+
+      data: {  //可选，当 POST请求 时，参数应该放在 data:{}对象 里
+
+      },
+    })
+
+    console.log(result);  // Promise {<pending>}
+
+    result.then((books) => {
+      console.log(books);  // 返回一个对象 {data: {…}, status: 200,...}
+    })
+
+
+    // GET请求
+
+    axios({
+      method: 'GET',    // 请求方法
+      url: 'http://www.liulongbin.top:3006/api/getbooks',    // 请求的地址
+
+      params: {   //可选， 当 GET请求，URL地址中包含参数，应该写在 params:{}对象 里
+        id: 1,
+      },
+
+      data: {  //可选，当 POST请求 时，参数应该放在 data:{}对象 里
+
+      },
+    }).then((books) => {
+      console.log(books.data);  // 返回一个对象 {data: {…}, status: 200,...}
+    })
+
+  </script>
+
+</body>
+
+</html>
