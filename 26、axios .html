@@ -26,15 +26,20 @@
         // 2、使用解构赋值， 从 axios封装的大对象中，把data属性解构出来
         // 3、把解构出来的 data 属性，使用冒号 ： 进行重命名，一般都重命名为 { data: res }
 
-        const { data: res } = await axios({
+        let promiseObj0 = axios({
           method: 'GET',
           url: 'http://www.liulongbin.top:3006/api/getbooks',
           params: {   // 当 GET请求，URL地址中包含参数，应该写在 params:{}对象 里
             id: 1,
           },
-        })
+        });
 
-        console.log(res.data);
+        let promiseObj1 = promiseObj0.then(data => {
+          console.log('weige');
+          console.log(data);
+        });
+
+        console.log('123');
 
       });
 
@@ -58,14 +63,13 @@
           },
 
         });
-
-        console.log(res.data);
+        console.log(res);
 
       });
 
+
     });
   </script>
-
 
 
 </body>
