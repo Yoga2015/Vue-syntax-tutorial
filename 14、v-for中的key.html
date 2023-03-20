@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>v-for中的key</title>
+    <!-- 1、引入开发版的 Vue , 在 window全局就有了Vue 这个构造函数 -->
+    <script src="./js/vue.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>v-for中的key</title>
-  <!-- 1、引入开发版的 Vue , 在 window全局就有了Vue 这个构造函数 -->
-  <script src="./js/vue.js"></script>
-</head>
+  <body>
+    <!--2、准备好一个容器，希望 Vue能够控制下面的这个div,帮我们再把数据填充到 div内部 -->
+    <div id="app">
+      <!-- 添加用户的区域 -->
+      <input type="text" v-model="name" />
+      <button @click="addNewUser">添加</button>
 
-<body>
+      <!-- 用户列表区域 -->
+      <ul>
+        <!-- <li v-for="(user,index) in userlist" :key="user.name"> -->
+        <!-- <li v-for="(user,index) in userlist" :key="user.index"> -->
+        <li v-for="(user,index) in userlist" :key="user.id">
+          <input type="checkbox" />
+          {{user.id}} {{user.name}}
+        </li>
+      </ul>
+    </div>
 
-  <!--2、准备好一个容器，希望 Vue能够控制下面的这个div,帮我们再把数据填充到 div内部 -->
-  <div id="app">
-    <!-- 添加用户的区域 -->
-    <input type="text" v-model="name">
-    <button @click="addNewUser">添加</button>
-    <!-- 用户列表区域 -->
-    <ul>
-      <li v-for="(user,index) in userlist" :key="user.id">
-        <input type="checkbox">
-        {{user.id}} {{user.name}}
-      </li>
-    </ul>
-  </div>
-  <!-- 3、创建 Vue 的实例对象 -->
-  <script type="text/javascript">
-    const vm = new Vue({
-      el: '#app',   // el : document.getElementById('root'),
-      data: {
-        // 用户列表
-        userlist: [
-          { id: 1, name: '张三' },
-          { id: 2, name: '李四' },
-        ],
-        // 输入的用户名
-        name: '',
-        // 下一个可用的id 值
-        nextId: 3,
-      },
-      methods: {
-        addNewUser() {
-          this.userlist.unshift({ id: this.nextId, name: this.name });
-          this.name = '';   // 前一个渲染完后记得清空输入框
-          this.nextId++;    // 每添加一个， id 自增 +1
-        }
-      }
-    });
-  </script>
-
-</body>
-
+    <!-- 3、创建 Vue 的实例对象 -->
+    <script type="text/javascript">
+      const vm = new Vue({
+        el: "#app", // el : document.getElementById('root'),
+        data: {
+          // 用户列表
+          userlist: [
+            { id: 1, name: "张三" },
+            { id: 2, name: "李四" },
+          ],
+          // 输入的用户名
+          name: "",
+          // 下一个可用的id 值
+          nextId: 3,
+        },
+        methods: {
+          addNewUser() {
+            this.userlist.unshift({ id: this.nextId, name: this.name });
+            this.name = ""; // 前一个渲染完后记得清空输入框
+            this.nextId++; // 每添加一个， id 自增 +1
+          },
+        },
+      });
+    </script>
+  </body>
 </html>

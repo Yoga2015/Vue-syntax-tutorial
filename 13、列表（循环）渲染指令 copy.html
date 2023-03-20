@@ -10,32 +10,11 @@
   <body>
     <!--2、准备好一个容器，希望 Vue能够控制下面的这个div,帮我们再把数据填充到 div内部 -->
     <div id="app">
-      <!-- ul列表渲染 -->
       <ul>
-        <!-- item in items ， items 是待循环的数组 ，item 是被循环的每一项 -->
-        <li v-for="item in list">id:{{item.id}} --> 姓名：{{item.name}}</li>
+        <li v-for="item in list" :key="item.index">
+          {{item.id}} --{{item.name}}
+        </li>
       </ul>
-
-      <!-- table 表格渲染 -->
-      <table class="table table-bordered table-hover">
-        <thead>
-          <th>索引</th>
-          <th>id</th>
-          <th>姓名</th>
-        </thead>
-        <tbody>
-          <!-- 当需要索引，才再加 (item,index) -->
-          <tr
-            v-for="(item,index) in list"
-            :key="item.id"
-            :title="item.name + index"
-          >
-            <td>{{index}}</td>
-            <td>{{item.id}}</td>
-            <td>{{item.name}}</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
 
     <!-- 3、创建 Vue 的实例对象 -->
