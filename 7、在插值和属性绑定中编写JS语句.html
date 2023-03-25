@@ -1,45 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>在 插值指令 和 属性绑定指令 中编写JS语句</title>
+    <!-- 1、引入开发版的 Vue , 在 window全局就有了Vue 这个构造函数 -->
+    <script src="./js/vue.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>在 插值指令 和 属性绑定指令 中编写JS语句</title>
-  <!-- 1、引入开发版的 Vue , 在 window全局就有了Vue 这个构造函数 -->
-  <script src="./js/vue.js"></script>
-</head>
+  <body>
+    <!--2、准备好一个容器，希望 Vue能够控制下面的这个div,帮我们再把数据填充到 div内部 -->
+    <div id="app">
+      <div>1 + 2 的结果是：{{number + 2}}</div>
+      <br />
 
-<body>
+      <div>{{tips}} 反转的结果是：{{tips.split('').reverse().join('')}}</div>
+      <br />
 
-  <!--2、准备好一个容器，希望 Vue能够控制下面的这个div,帮我们再把数据填充到 div内部 -->
-  <div id="app">
+      <!-- 在使用 v-bind 属性绑定指令 期间，如果绑定内容需要进行动态拼接，则字符串的外面应该包裹单引号 -->
+      <div :title="'box'+index">这是一个div (在属性绑定指令中编写JS语句)</div>
+      <br />
 
-    <div> 1 + 2 的结果是：{{number + 2}}</div> <br>
+    </div>
 
-    <div>{{tips}} 反转的结果是：{{tips.split('').reverse().join('')}}</div> <br>
+    <!-- 3、创建 Vue 的实例对象 -->
+    <script type="text/javascript">
+      //3.1、创建 Vue 实例  ，参数只能传一个对象 ，这种对象叫 配置对象
+      const vm = new Vue({
+        // el 属性 是固定写法，用于指定当前vm实例要控制页面上的哪个区域，接收的值 是一个 css选择器
+        el: "#app", // el : document.getElementById('root'),
 
-    <!-- 在使用 v-bind 属性绑定指令 期间，如果绑定内容需要进行动态拼接，则字符串的外面应该包裹单引号 -->
-    <div :title="'box'+index">这是一个div (在属性绑定指令中编写JS语句) </div> <br>
-
-  </div>
-
-  <!-- 3、创建 Vue 的实例对象 -->
-  <script type="text/javascript">
-
-    //3.1、创建 Vue 实例  ，参数只能传一个对象 ，这种对象叫 配置对象
-    const vm = new Vue({
-
-      // el 属性 是固定写法，用于指定当前vm实例要控制页面上的哪个区域，接收的值 是一个 css选择器  
-      el: '#app',   // el : document.getElementById('root'),
-
-      // data 对象 就是要渲染到页面上的数据
-      data: {
-        number: 1,
-        tips: '我是谁',
-        index: 10,
-      }
-    });
-
-  </script>
-</body>
-
+        // data 对象 就是要渲染到页面上的数据
+        data: {
+          number: 1,
+          tips: "我是谁",
+          index: 10,
+        },
+      });
+    </script>
+  </body>
 </html>

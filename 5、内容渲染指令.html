@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>内容渲染指令</title>
-</head>
-<body>
-  <!-- 1、引入开发版的 Vue , 在 window全局就有了Vue 这个构造函数 -->
-  <script src="./js/vue.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <title>内容渲染指令</title>
+  </head>
+  <body>
+    <!-- 1、引入开发版的 Vue , 在 window全局就有了Vue 这个构造函数 -->
+    <script src="./js/vue.js"></script>
 
-  <!--2、准备好一个容器，希望 Vue能够控制下面的这个div,帮我们再把数据填充到 div内部 -->
-  <div id="app">
-    <!-- v-text 用来把 data对象中 name属性 对应的值，渲染到 P标签中 -->
-    <p v-text="username"></p>
-    <p v-text="gender">性别 ，但是 v-text 指令会覆盖元素内默认的值。</p>
+    <!--2、准备好一个容器，希望 Vue能够控制下面的这个div,帮我们再把数据填充到 div内部 -->
+    <div id="app">
+      <!-- v-text 用来把 data对象中 name属性 对应的值，渲染到 P标签中 -->
+      <p v-text="username"></p>
+      <p v-text="gender">性别 ，但是 v-text 指令会覆盖元素内默认的值。</p>
 
-    <!-- {{}} 插值表达式，也是用来把 data对象中 name属性 对应的值，渲染到 P标签中 -->
-    <p>姓名：{{username}}</p>
-    <p>性别：{{gender}}</p>
-    <p>{{}} 插值表达式，只是内容的占位符，不会覆盖元素中默认的文本内容，在开发中常用。</p>
+      <!-- {{}} 插值表达式，也是用来把 data对象中 name属性 对应的值，渲染到 P标签中 -->
+      <p>姓名：{{username}}</p>
+      <p>性别：{{gender}}</p>
+      <p>
+        {{}}
+        插值表达式，只是内容的占位符，不会覆盖元素中默认的文本内容，在开发中常用。
+      </p>
 
-    <!-- v-text 指令 和 {{}} 插值语法 只能 渲染纯文本内容。 -->
+      <!-- v-text 指令 和 {{}} 插值语法 只能 渲染纯文本内容。 -->
+      <div v-text="info"></div>
 
-    <!-- v-html 指令：可以把带有 HTML标签的字符串，渲染成真正的HTML内容。 -->
-    <div v-html="info"></div>
-  </div>
+      <!-- v-html 指令：可以把带有 HTML标签的字符串，渲染成真正的HTML内容。 -->
+      <div v-html="info"></div>
+    </div>
 
-  <!-- 3、创建 Vue 的实例对象 -->
-  <script type="text/javascript">
+    <!-- 3、创建 Vue 的实例对象 -->
+    <script type="text/javascript">
+      //3.1、创建 Vue 实例  ，参数只能传一个对象 ，这种对象叫 配置对象
+      const vm = new Vue({
+        // el 属性 是固定写法，用于指定当前vm实例要控制页面上的哪个区域，接收的值 是一个 css选择器
+        el: "#app", // el : document.getElementById('root'),
 
-    //3.1、创建 Vue 实例  ，参数只能传一个对象 ，这种对象叫 配置对象
-    const vm = new Vue({
-
-      // el 属性 是固定写法，用于指定当前vm实例要控制页面上的哪个区域，接收的值 是一个 css选择器  
-      el: '#app',   // el : document.getElementById('root'),
-
-      // data 对象 就是要渲染到页面上的数据
-      data: {
-        username: 'Amy',   //怎么把 name渲染到页面上？ 
-        gender: '男',
-        info: ' <h5 style="color: pink; font-weight: bold;">欢迎光临！</h5>',
-      }
-    });
-  </script>
-
-</body>
-
+        // data 对象 就是要渲染到页面上的数据
+        data: {
+          username: "Amy", //怎么把 name渲染到页面上？
+          gender: "男",
+          info: ' <h4 style="color: red; font-weight: bold;">欢迎光临！</h4>',
+        },
+      });
+    </script>
+  </body>
 </html>

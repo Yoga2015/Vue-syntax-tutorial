@@ -17,12 +17,13 @@ Vue.directive('color', {
   }
 });
 
-// 全局自定义指令:
 
+// 全局自定义指令:   简写
 // 如果bind 和 update 函数的逻辑完全相同，可以简写 ，替换上面的：
 Vue.directive('color', function (el, binding) {
   el.style.color = binding.value
 });
+
 
 // 全局过滤器
 Vue.filter('过滤器的名字', function () { })
